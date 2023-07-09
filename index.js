@@ -10,7 +10,7 @@ app.use((req, res)=>{
 */
 
 app.get('/', (req, res)=>{
-    res.send('<h2>Welcome to the home page')
+    res.send('<h2>Welcome to the home page</h2>')
 })
 
 app.get('/aniruddh', (req, res)=>{
@@ -33,6 +33,19 @@ app.get('/r/:subreddit/:postId', (req, res)=>{
 
 app.post('/cats', (req, res)=>{
     res.send("post request to /Cats, THIS IS DIFFERENT THAN GET REQUEST.");
+})
+
+app.get('/search', (req, res)=>{
+    const {q} = req.query;
+    if(!q){
+        res.send('wrong query passed!!')
+    }else{
+        res.send(`<h2>search results for : ${q} </h2>`)
+    }
+})
+
+app.get('*', (req, res)=>{
+    res.send('ACCESS DENIED. Please contact Administrator Privileges.')
 })
 
 app.listen(5000, ()=>{
